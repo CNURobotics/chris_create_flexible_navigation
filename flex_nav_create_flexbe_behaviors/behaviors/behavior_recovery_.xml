@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="Recovery ">
+
+	<executable package_path="behavior_recovery_.recovery__sm" class="RecoverySM" />
+	<tagstring>flex_planner</tagstring>
+	<author>John Wesley Hayhurst</author>
+	<date>Mon Jul 25 2016</date>
+	<description>
+		A recovery behavior for the flex nav system
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

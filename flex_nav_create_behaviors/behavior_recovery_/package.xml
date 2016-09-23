@@ -1,0 +1,21 @@
+<package>
+  <name>behavior_recovery_</name>
+  <version>1.0.0</version>
+  <description>
+     A recovery behavior for the flex nav system
+  </description>
+  <author email="johnwesley.hayhurst.12@cnu.edu">ohn Wesley Hayhurst</author>
+  <maintainer email="david.conner@cnu.edu">Dr. David Conner</maintainer>
+  <license>BSD</license>
+  <url></url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>rospy</run_depend>
+  <run_depend>flexbe_core</run_depend>
+  <run_depend>flexbe_states</run_depend>
+  <run_depend>flexbe_navigation_states</run_depend>
+  <run_depend>flexbe_utility_states</run_depend>
+  <run_depend>flex_nav_flexbe_states</run_depend>
+
+</package>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="Move Base">
+
+	<executable package_path="behavior_move_base.move_base_sm" class="MoveBaseSM" />
+	<tagstring>navigation, move_base</tagstring>
+	<author>Justin Willis</author>
+	<date>Fri Aug 19 2016</date>
+	<description>
+		A drop in replacement for move_base
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

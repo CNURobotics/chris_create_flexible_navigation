@@ -1,0 +1,66 @@
+<launch>
+  <arg name="custom_param_file" default="$(find flex_nav_create_bringup)/param/dummy.yaml"/>
+  <arg name="map_file"          default="$(find chris_create_navigation)/maps/empty.yaml"/>
+  <arg name="scan_topic"        default="/hokuyo_node/scan"/>
+  <arg name="odom_frame_id"     default="odom"/>
+  <arg name="base_frame_id"     default="base_footprint"/>
+  <arg name="global_frame_id"   default="map"/>
+  <arg name="odom_topic"        default="odom" />
+
+  <!-- Map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- Localization -->
+  <include file="$(find chris_create_bringup)/launch/fake_localization.launch"/>
+
+  <!-- Path Planning -->
+  <node pkg="flex_nav_planner" type="flex_nav_planner_get_path_node" respawn="false" name="high_level_planner" output="screen">
+    <rosparam file="$(find sbpl_lattice_planner)/launch/move_base/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find sbpl_lattice_planner)/launch/move_base/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find sbpl_lattice_planner)/launch/move_base/sbpl_global_params.yaml" command="load" />
+    <rosparam file="$(find flex_nav_create_bringup)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find flex_nav_create_bringup)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find flex_nav_create_bringup)/param/move_base_params.yaml" command="load" />
+    <rosparam file="$(find flex_nav_create_bringup)/param/global_planner_params.yaml" command="load" />
+    <rosparam file="$(arg custom_param_file)" command="load" />
+    <param name="planner" value="SBPLLatticePlanner" />
+    <param name="/SBPLLatticePlanner/primitive_filename" value="$(find chris_create_navigation)/mprim/create_100.mprim" />
+    <param name="/SBPLLatticePlanner/allocated_time" value="9.9" />
+    <remap from="odom" to="$(arg odom_topic)"/>
+    <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+
+  <!-- Path Planning -->
+  <node pkg="flex_nav_planner" type="flex_nav_planner_follow_path_node" respawn="false" name="mid_level_planner" output="screen">
+    <rosparam file="$(find flex_nav_create_bringup)/param/costmap_common_params.yaml" command="load" ns="middle_costmap" />
+    <rosparam file="$(find flex_nav_create_bringup)/param/middle_costmap_params.yaml" command="load" />
+    <rosparam file="$(arg custom_param_file)" command="load" />
+    <param name="planner" value="SBPLLatticePlanner" />
+    <param name="costmap_name" value="middle_costmap"/>
+    <param name="middle_costmap/global_frame" value="$(arg odom_frame_id)"/>
+    <param name="middle_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
+    <param name="/SBPLLatticePlanner/primitive_filename" value="$(find chris_create_navigation)/mprim/create_050.mprim" />
+    <param name="/SBPLLatticePlanner/allocated_time" value="9.9" />
+    <remap from="odom" to="$(arg odom_topic)"/>
+    <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+
+  <!-- Path Follower Control -->
+  <node pkg="flex_nav_controller" type="flex_nav_controller_follow_topic_node" respawn="false" name="low_level_planner" output="screen">
+    <param name="controller_frequency" value="10.0" />
+    <rosparam file="$(find flex_nav_create_bringup)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find flex_nav_create_bringup)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find flex_nav_create_bringup)/param/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(arg custom_param_file)" command="load" />
+    <param name="planner" value="dwa_local_planner/DWAPlannerROS"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+    <remap from="scan" to="$(arg scan_topic)"/>
+    <remap from="cmd_vel" to="/ignore_this"/>
+  </node>
+
+  <!-- Pure Pursuit Control -->
+  <node pkg="flex_nav_controller" type="flex_nav_controller_pure_pursuit_topic" name="pure_pursuit" output="screen">
+    <param name="target_frame" value="odom" />
+  </node>
+
+</launch>
