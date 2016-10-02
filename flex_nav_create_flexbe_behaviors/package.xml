@@ -16,8 +16,6 @@
   <run_depend>behavior_waypoint</run_depend>
   <run_depend>behavior_test</run_depend>
   <run_depend>behavior_flex_planner</run_depend>
-  <run_depend>behavior_concurrent_flex_planner</run_depend>
-  <run_depend>behavior_concurrent_test</run_depend>
   <run_depend>behavior_recovery_</run_depend>
   <run_depend>behavior_move_base</run_depend>
 </package>
