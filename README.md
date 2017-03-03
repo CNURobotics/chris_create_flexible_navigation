@@ -15,21 +15,9 @@ This package has a number of dependencies.  The quickest, and easiest method to 
 2) Follow the [CHRISLab Installation] guide
 * This will install the entire system in a new workspace. Once you build, you can run the Gazebo simulation based demonstration described below.
 
-3) Make sure the [FlexBE System], which will be installed as part of the [CHRISLab Installation], is properly set up.  It requires the [FlexBE App Installation] into the Chromium browser.
+3) Make sure the [FlexBE System], which will be installed as part of the [CHRISLab Installation], is properly set up.  
 
-4) [FlexBE] must be configured to point to the proper repos after the [CHRISLab Installation] is complete and built.
- This configuration can be completed once FlexBE is started below.
-
- * Workspace
-  * Behaviors Folder: `~/CHRISLab/src/chris_create_flexible_navigation/flex_nav_create_behaviors`
-  * flexbe_behaviors: `~/CHRISLab/src/chris_create_flexible_navigation/flex_nav_create_flexbe_behaviors`
-
- * State Libraries
-  * `~/CHRISLab/src/flexbe_behavior_engine/flexbe_states/src/flexbe_states`
-  * `~/CHRISLab/src/generic_flexbe_states/flexbe_navigation_states/src/flexbe_navigation_states`
-  * `~/CHRISLab/src/generic_flexbe_states/flexbe_utility_states/src/flexbe_utility_states`
-  * `~/CHRISLab/src/flexible_navigation/flex_nav_flexbe_states/src/flex_nav_flexbe_states`
-  * `~/CHRISLab/src/chris_create_flexible_navigation/flex_nav_create_flexbe_states/src/flex_nav_create_flexbe_states`
+ This version presumes use of the [FlexBE App] for the user interface, which depends on states and behaviors that are exported as part of individual package.xml.
 
 Operation
 ---------

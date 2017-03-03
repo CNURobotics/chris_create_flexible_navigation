@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<behavior name="Flex Planner">
+<behavior name="Create Flex Planner">
 
-	<executable package_path="behavior_flex_planner.flex_planner_sm" class="FlexPlannerSM" />
+	<executable package_path="flex_nav_create_flexbe_behaviors.create_flex_planner_sm" class="CreateFlexPlannerSM" />
 	<tagstring>flex_planner</tagstring>
 	<author>Justin Willis</author>
 	<date>Wed Jun 29 2016</date>
 	<description>
-		Controlls the robot using FlexBE
+		Controls the iRobot Create using FlexBE
 	</description>
 
 

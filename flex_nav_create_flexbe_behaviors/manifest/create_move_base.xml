@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<behavior name="Move Base">
+<behavior name="Create Move Base">
 
-	<executable package_path="behavior_move_base.move_base_sm" class="MoveBaseSM" />
+	<executable package_path="flex_nav_create_flexbe_behaviors.create_move_base_sm" class="CreateMoveBaseSM" />
 	<tagstring>navigation, move_base</tagstring>
 	<author>Justin Willis</author>
 	<date>Fri Aug 19 2016</date>
 	<description>
-		A drop in replacement for move_base
+		A drop in replacement for move_base that works with CHRISLab Flexible Navigation system and iRobot Create
 	</description>
 
 
