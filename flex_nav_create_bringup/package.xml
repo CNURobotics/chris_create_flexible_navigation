@@ -20,8 +20,8 @@
   <run_depend>gmapping</run_depend>
   <run_depend>chris_create_bringup</run_depend>
   <run_depend>dwa_local_planner</run_depend>
-  <run_depend>flex_nav_planner</run_depend>
-  <run_depend>flex_nav_controller</run_depend>
+  <run_depend>flex_nav_planners</run_depend>
+  <run_depend>flex_nav_controllers</run_depend>
   <run_depend>flex_nav_flexbe_states</run_depend>
   <run_depend>flex_nav_create_flexbe_states</run_depend>
 
